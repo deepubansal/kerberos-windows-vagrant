@@ -50,13 +50,13 @@ Vagrant.configure("2") do |config|
     cfg.vm.network :forwarded_port, guest: 3389, host: 3389, id: "rdp", auto_correct: true
     cfg.vm.network :forwarded_port, guest: 80, host: 8080, id: "http", auto_correct: true
     cfg.vm.network :private_network, ip: "192.168.39.4", gateway: "192.168.39.1", dns: "192.168.39.2"
-#    cfg.vm.provision "windows-sysprep"
-#
-#    cfg.vm.provision "shell", path: "scripts/fix-second-network.ps1", privileged: false, args: "-ip 192.168.39.4 -dns 192.168.39.2"
-#    cfg.vm.provision "shell", path: "scripts/provision.ps1", privileged: false
-#    cfg.vm.provision "shell", path: "scripts/increase-tcp-num-connections.ps1", privileged: false
-#    cfg.vm.provision "shell", path: "scripts/install-chocolatey.ps1", privileged: false
-#    cfg.vm.provision "reload"
+    cfg.vm.provision "windows-sysprep"
+
+    cfg.vm.provision "shell", path: "scripts/fix-second-network.ps1", privileged: false, args: "-ip 192.168.39.4 -dns 192.168.39.2"
+    cfg.vm.provision "shell", path: "scripts/provision.ps1", privileged: false
+    cfg.vm.provision "shell", path: "scripts/increase-tcp-num-connections.ps1", privileged: false
+    cfg.vm.provision "shell", path: "scripts/install-chocolatey.ps1", privileged: false
+    cfg.vm.provision "reload"
     cfg.vm.provision "shell", path: "scripts/provision.ps1", privileged: false
     cfg.vm.provision "reload"
     cfg.vm.provision "shell", path: "scripts/enable-kerberos-tomcat.ps1", privileged: false
