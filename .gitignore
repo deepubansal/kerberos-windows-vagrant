@@ -1,1 +1,4 @@
 .vagrant
+SampleWebApplication/.idea/
+SampleWebApplication/target/
+*.iml

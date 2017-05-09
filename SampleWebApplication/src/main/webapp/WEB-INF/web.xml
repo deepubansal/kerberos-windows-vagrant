@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<web-app
+        version="3.0"
+        xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+ 	<display-name>Archetype Created Web Application</display-name>
+
+
+	<filter>
+		<filter-name>SpnegoHttpFilter</filter-name>
+		<filter-class>net.sourceforge.spnego.SpnegoHttpFilter</filter-class>
+
+		<init-param>
+			<param-name>spnego.allow.basic</param-name>
+			<param-value>true</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>spnego.allow.localhost</param-name>
+			<param-value>true</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>spnego.allow.unsecure.basic</param-name>
+			<param-value>true</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>spnego.login.client.module</param-name>
+			<param-value>spnego-client</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>spnego.krb5.conf</param-name>
+			<param-value>krb5.ini</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>spnego.login.conf</param-name>
+			<param-value>login.conf</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>spnego.preauth.username</param-name>
+			<param-value>tomcat</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>spnego.preauth.password</param-name>
+			<param-value>MyPa$sw0rd</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>spnego.login.server.module</param-name>
+			<param-value>spnego-server</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>spnego.prompt.ntlm</param-name>
+			<param-value>true</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>spnego.logger.level</param-name>
+			<param-value>1</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>SpnegoHttpFilter</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+
+</web-app>
