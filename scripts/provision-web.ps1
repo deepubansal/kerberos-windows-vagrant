@@ -2,6 +2,7 @@
 . c:\vagrant\scripts\insert-ssh-key.ps1
 . c:\vagrant\scripts\install-java.ps1
 . c:\vagrant\scripts\install-tomcat.ps1
+. c:\vagrant\scripts\install-jetty.ps1
 
 $de = [ADSI]"WinNT://web/Administrators,group" 
 $de.Add("WinNT://windomain/tomcat")
