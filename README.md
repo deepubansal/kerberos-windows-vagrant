@@ -2,33 +2,10 @@
 
 ## Software Installations
 
-* Install Packer using `brew install packer` or from <a href="https://www.packer.io/intro/getting-started/install.html">here</a>
 * Install Virtualbox
 * Install Vagrant
 * Install Vagrant *reload* plugin using `vagrant plugin install vagrant-reload`
 * Install Vagrant *sysprep* plugin using `vagrant plugin install vagrant-windows-sysprep`
-
-## Get Windows 2012 r2 server's vagrant box
-
-Get the packer-windows repository
-```bash
-git clone http://github.com/diaclectic/packer-windows
-cd packer-windows
-```
-
-Then build the Windows 2012 R2 artifact
-```bash
-packer build windows_2012_r2.json
-```
-It may take upto 6 hours, most of the time stuck on downloading and installing updates.
-
-After the above command succeeds, you would find a file named `windows_2012_r2_virtualbox.box` in current directory.
-
-Import the box in vagrant using:
-
-```bash
-vagrant box add windows_2012_r2 windows_2012_r2_virtualbox.box
-```
 
 ## Get Vagrantfile and scripts
 
@@ -38,6 +15,9 @@ Clone this repository and cd inside it:
 git clone git@github.com:deepubansal/kerberos-windows-vagrant.git
 cd kerberos-windows-vagrant
 ```
+
+Vagrant box used (standard windows 2012 r2 server) is availble on Hashicorp Atlas (Vagrant cloud): https://vagrantcloud.com/kensykora/boxes/windows_2012_r2_standard
+
 ## Install Domain controller Vagrant Box
 
 ```bash
@@ -57,8 +37,9 @@ Box with following details:
 * Hostname: `web`
 * FQDN: `web.windomain.local`
 * Domain: `WINDOMAIN`
-* Provisioned with: Tomcat8, JDK8
-* Tomcat enabled with Kerberos/Spnego Support for SSO with `tomcat` user
+* Provisioned with: Tomcat8, JETTY 9.4.5, JDK8
+* Tomcat enabled with Kerberos/Spnego Support for SSO with `tomcat` user on port 8080
+* Jetty enabled with Kerberos/Spnego Support for SSO with `tomcat` user on port 9999
 * AutoLogon set to user `tomcat`
 
 ## Install Client Vagrant Box
@@ -73,7 +54,10 @@ Box with following details:
 
 ## Testing Single Sign On:
 
-Open IE in client box and navigate to URL: `http://web:8080/hello_spnego.jsp`
-If you see a page saying `Hello adrian.smith!`, that means SSO is successful via Kerberos
+### Tomcat
+Open IE in client box and navigate to URL: `http://web:8080/SampleWebApplication/hello_spnego.jsp`
+If you see a page saying `Hello adrian.smith!`, that means SSO is successful via Kerberos on Tomcat.
 
-
+### Jetty
+Open IE in client box and navigate to URL: `http://web:9999/SampleWebApplication/hello_spnego.jsp`
+If you see a page saying `Hello adrian.smith!`, that means SSO is successful via Kerberos on Jetty.
