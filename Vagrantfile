@@ -60,9 +60,8 @@ Vagrant.configure("2") do |config|
     cfg.vm.provision "shell", path: "scripts/provision.ps1", privileged: false
     cfg.vm.provision "reload"
     cfg.vm.provision "shell", path: "scripts/enable-kerberos-tomcat.ps1", privileged: false
-    cfg.vm.provision "shell", path: "scripts/start-tomcat.ps1", privileged: false, run: "always"
-    cfg.vm.provision "shell", path: "scripts/start-jetty.ps1", privileged: false, run: "always"
-
+    cfg.vm.provision "shell", path: "scripts/start-tomcat.ps1", privileged: false
+    cfg.vm.provision "shell", path: "scripts/start-jetty.ps1", privileged: false
 
     cfg.vm.provider "virtualbox" do |vb, override|
       vb.gui = true
